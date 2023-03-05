@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1><small>{{session.username.capitalize()}} blogs</small></h1> 
+  <a class="btn btn-success" href="/add_article"> Add Article</a>
+  <hr>
+  <!-- <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Body</th>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for article in articles %}
+      <tr>
+        <td>{{article.id}}</td>
+        <td>{{article.title}}</td>
+        <td>{{article.author}}</td>
+        <td>{{article.body[:20]}}</td>
+        <td>{{article.create_date}}</td>
+        <td><a href="edit_article/{{article.id}}" class="btn btn-default pull-right">Edit</a></td>
+        <td>
+          <form action="{{url_for('delete_article', id=article.id)}}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </table> -->
+
+
+  <section class="vh-95" style="background-color: rgb(158, 197, 191);">
+    <div class="container h-100">
+      
+    <div class="row">
+
+      {% for article in articles %}
+
+      <div class="col-sm-3">
+        <div class="card my-3">
+          <div class="card-body">
+            <h5 class="card-title">{{article.title.capitalize()}}</h5>
+            <h6 class="card-subtitle my-2 text-muted">{{article.create_date}}</h6>
+            <p class="card-text">{{article.body[:50]}}...</p>
+            <a href="edit_article/{{article.id}}" class="btn btn-info ">Edit</a>
+            <a href="{{url_for('delete_article', id=article.id)}}" class="btn btn-danger">Delete</a>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    </div>
+  </section>
+
+
+
+
+
+{% endblock %}

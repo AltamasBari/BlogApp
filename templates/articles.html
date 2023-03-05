@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Blogs</h1>
+
+  <section class="vh-95" style="background-color: rgb(158, 197, 191);">
+    <div class="container h-100">
+      
+    <div class="row">
+
+      {% for article in articles %}
+
+      <div class="col-sm-3">
+        <div class="card my-3">
+          <div class="card-body">
+            <h5 class="card-title">{{article.title.capitalize()}}</h5>
+            <h6 class="card-subtitle my-2 text-muted">Author: {{article.author}}</h6>
+            <p class="card-text">{{article.body[:50]}}...</p>
+            <center><a href="article/{{article.id}}" class="btn btn-primary">View</a></center>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    </div>
+  </section>
+
+{% endblock %}
