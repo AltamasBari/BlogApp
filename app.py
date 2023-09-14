@@ -4,19 +4,18 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 from datetime import datetime
+from config import pas,key
 
 app = Flask(__name__)
 
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = pas
 app.config['MYSQL_DB'] = 'blogapp'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
-
-
 
 
 @app.route('/')
@@ -254,5 +253,5 @@ def delete_article(id):
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
-    app.secret_key='wiley-team-2'
+    app.secret_key=key
     app.run(debug=True)
